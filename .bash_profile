@@ -23,7 +23,7 @@ function print_update_msg {
 
 function print_ssh_msg {
     REMOTE_IP=$(echo "$SSH_CONNECTION" | awk -F' ' '{printf $1}')
-    [[ ! -z "$SSH_CONNECTION" ]] && echo "- SSH Source: $REMOTE_IP"
+    [[ -n "$SSH_CONNECTION" ]] && echo "- SSH Source: $REMOTE_IP"
 }
 
 function login_banner {
@@ -31,7 +31,7 @@ function login_banner {
     print_welcome_msg
 
     # Print connecting IP on SSH connection
-    [[ ! -z "$SSH_CONNECTION" ]] && print_ssh_msg
+    [[ -n "$SSH_CONNECTION" ]] && print_ssh_msg
 
     # Print update reminder
     type checkupdates > /dev/null 2>&1 && print_update_msg

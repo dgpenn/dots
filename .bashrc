@@ -24,28 +24,24 @@ alias sudo='sudo -v; sudo '
 alias diff='diff --color=auto'
 
 # Alias for whipper
-type whipper > /dev/null 2>&1
-if [[ "$?" -eq 0 ]]; then
+if type whipper > /dev/null 2>&1; then
     alias arip='whipper cd rip --unknown'
 fi
 
 # Alias for dots 
-type git > /dev/null 2>&1
-if [[ "$?" -eq 0 ]]; then
+if type git > /dev/null 2>&1; then
     alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
     source /usr/share/bash-completion/completions/git
     __git_complete dots __git_main
 fi
 
 # Suggest packages for unknown commands
-type pkgfile > /dev/null 2>&1
-if [[ "$?" -eq 0 ]]; then
+if type pkgfile > /dev/null 2>&1; then
     source /usr/share/doc/pkgfile/command-not-found.bash
     pkgfile --update > /dev/null 2>&1
 fi
 
 # Load .Xresources
-type xrdb > /dev/null 2>&1
-if [[ -f "${HOME}/.Xresources" ]]; then
+if [[ -f "${HOME}/.Xresources" ]] && type xrdb > /dev/null 2>&1; then
     xrdb -merge "${HOME}/.Xresources"
 fi
