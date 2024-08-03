@@ -3,6 +3,9 @@
 # If not running interactively, stop and exit
 [[ $- != *i* ]] && return
 
+# Add completion for commands
+complete -cf sudo
+
 # Set shell options
 ## cd if only a path is typed
 shopt -s autocd
